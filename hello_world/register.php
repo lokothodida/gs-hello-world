@@ -6,7 +6,7 @@
 
 // The /lib/ directory has a wrapper class called GSPlugin, which can safely
 // be @included and gives us a nice collection of methods for more easily
-// registering our plugin's details and actons.
+// registering our plugin's details and actions.
 include 'lib/gsplugin.php';
 
 // Instantiate the GSPlugin class and register the static plugin information.
