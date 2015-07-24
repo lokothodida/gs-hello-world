@@ -1,4 +1,4 @@
-# GetSimple CMS "Hello World" Plugin Example
+# GetSimple CMS "Hello World" Plugin
 This plugin is a redux of the [example plugin](http://get-simple.info/wiki/plugins:creation)
 provided on the GetSimple [wiki](http://get-simple.info/wiki/).
 
@@ -7,7 +7,9 @@ functionality as its predecessor, but with:
 
 * Full documentation
 * Clearer design guidelines
+* Ideal structure
 * Language integration
+* Avoidance of polluting the global variable/function namespace
 * A portable library that acts as an [SDK](https://en.wikipedia.org/wiki/Software_development_kit) or devkit
 
 so that plugin developers can use this example as a solid starting point for
