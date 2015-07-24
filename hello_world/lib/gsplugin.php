@@ -1,9 +1,18 @@
 <?php
 
-// 
+// Prevent this class from being included if another plugin
+// has already loaded it
 if (class_exists('GSPlugin')) return;
 
-// Wrapper class for GetSimple plugins
+// This is a wrapper class for creating GetSimple plugins.
+// It is designed to allow you to easily drop it into your project
+// to give a wrapper for the GetSimple plugin registration methods
+// You should not modify this script directly. It is part of the
+// proposed GetSimple Plugin SDK, and thus should be imported as-is.
+// If however you wish to add new functions, you can simpl extend
+// the class with your own, and instantiate that class instead of
+// GSPlugin.
+// Documentation for this class is available at @TODO
 class GSPlugin {
   protected $hooks = array();
   protected $hookScripts = array();
