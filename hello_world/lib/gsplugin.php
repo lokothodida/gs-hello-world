@@ -140,7 +140,7 @@ class GSPlugin {
   // Runs admin scripts
   public function _admin() {
     if (isset($this->_adminPanel['script'])) {
-      runScript($this->_adminPanel['script']);
+      $this->runScript($this->_adminPanel['script']);
     }
   }
 
