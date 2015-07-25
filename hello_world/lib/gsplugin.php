@@ -14,6 +14,10 @@ if (class_exists('GSPlugin')) return;
 // GSPlugin.
 // Documentation for this class is available at @TODO
 class GSPlugin {
+  // == CONSTANTS ==
+  const SDK_VERSION = 0.1;
+
+  // == PROPERTIES ==
   protected $hooks = array();
   protected $hookScripts = array();
   protected $filters = array();
