@@ -28,7 +28,7 @@ $plugin = new GSPlugin(array(
 // panel of this plugin will appear in the 'Theme' section
 // However, we won't be able to access it unless there is a link to it in
 // the sidebar! So let's add a sidebar:
-$plugin->hook('sidebar', 'createSideMenu', array($plugin->id(), $plugin->i18n('PLUGIN_SIDEBAR')));
+$plugin->sidebar($plugin->i18n('PLUGIN_SIDEBAR'));
 
 // The above code registers a hook to create the sidebar using the plugin's
 // ID, and with a label that is language-sensitive (the hash for the label is
@@ -45,7 +45,7 @@ $plugin->admin('backend/index.php');
 // The below hook will be executed in the theme's footer when the front end
 // user loads the page.
 // It will run the show.php script (in this plugin's /frontend/ directory)
-$plugin->hook('footer', 'frontend/show.php');
+$plugin->hook('theme-footer', 'frontend/show.php');
 
 // Finally, initialize the plugin:
 $plugin->init();

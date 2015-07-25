@@ -28,16 +28,89 @@ class GSPlugin {
     $this->i18nMerge();
   }
 
+  // Plugin ID
   public function id() { return $this->info['id']; }
 
+  // Plugin Version
   public function version() { return $this->info['version']; }
 
+  // Plugin Author
   public function author() { return $this->info['author']; }
 
+  // Author Website
   public function website() { return $this->info['website']; }
 
-  public function tab() { return $this->info['tab']; }
+  // Plugin Tab
+  // Return the plugin tab or register a new tab
+  public function tab() {
+    $args = func_get_args();
 
+    if (count($args) == 0) {
+      return $this->info['tab'];
+    } else {
+      $tab = array();
+
+      if (!is_array($args[0])) {
+        $tab['name'] = $args[0];
+      } else {
+        $tab = $args[0];
+      }
+
+      if (isset($args[1])) {
+        $tab['plugin'] = $args[0];
+      }
+
+      if (isset($args[2])) {
+        $tab['label'] = $args[2];
+      }
+
+      $tab = array_merge(array(
+        'plugin' => $this->id(),
+        'flag' => null,
+      ), $tab);
+
+      $this->hook('nav-tab', 'createNavTab', array(
+        $tab['name'],
+        $tab['plugin'],
+        $tab['label'],
+        $tab['flag'])
+      );
+    }
+  }
+
+  // Add a sidebar
+  // Overloaded function
+  // If an associative array is given, those keys are used to create the menu
+  // Otherwise we parse the argument list to get a correctly formatted array
+  public function sidebar() {
+    $args = func_get_args();
+    $sidebar = $args[0];
+
+    if (!is_array($sidebar)) {
+      $sidebar = array('label' => $sidebar);
+    }
+
+    if (isset($args[1]) && is_string($args[1])) {
+      $sidebar['action'] = $args[1];
+    }
+
+    $sidebar = array_merge(array(
+      'tab' => $this->tab(),
+      'action' => null,
+      'flag' => true,
+      'id' => $this->id(),
+    ), $sidebar);
+
+    $this->hook($sidebar['tab'] . '-sidebar', 'createSideMenu', array(
+      $sidebar['id'],
+      $sidebar['label'],
+      $sidebar['action'],
+      $sidebar['flag'])
+    );
+  }
+
+  // Register a hook
+  // If the $fn is a PHP script, run the script
   public function hook($name, $fn, $args = array()) {
     if (strpos($name, '-') === false) {
       $name = $this->tab() . '-' . $name;
@@ -52,24 +125,33 @@ class GSPlugin {
     $this->hooks[] = array($name, $fn, $args);
   }
 
+  // Register a filter
   public function filter($name, $fn) {
     $this->filter[] = array($name, $fn);
   }
 
+  // Initialize the plugin
   public function init() {
     $this->register();
     $this->processHooks();
     $this->processFilters();
   }
 
+  // i18n hashes, namespaced by the plugin id
   public function i18n($hash) {
     return i18n_r($this->id() . '/' . $hash);
   }
 
+  // Plugin path
   public function path() {
     return $this->info['path'];
   }
 
+  // Registers admin panel actions
+  // If $args[0] is a PHP script, run that script
+  // If $args[0] is a function, run the function
+  // If $args[0] is a URL route and $args[1] a PHP script/function, run the
+  // script/function
   public function admin() {
     // Check the arguments
     $args = func_get_args();
@@ -81,12 +163,13 @@ class GSPlugin {
         $this->_adminPanel = $args[0];
       }
     } elseif (count($args) == 2) {
-      
+      // @TODO
     }
     // Implemented by extended classes
   }
 
   // == MAGIC METHODS ==
+  // Implements the hook PHP scripts
   public function __call($name, $args) {
     $explode = explode('_', $name);
     if ($explode[0] == 'hookScript') {
