@@ -16,10 +16,11 @@ so that plugin developers can use this example as a solid starting point for
 building their own (non-trivial) plugins.
 
 # Installation
-* Download `hello_world.php` and the `hello_world/` folder to your GetSimple
+* Download [`hello_world.php`](public/plugins/hello_world.php) and the
+[`hello_world/`](public/plugins/hello_world) folder to your GetSimple
 installation.
 * Log into your GetSimple administration panel, go to the `Plugins` tab and
-enable the `Hello World` plugin
+enable the `Hello World` plugin.
 
 # Using the Development Environment
 ## Installation
