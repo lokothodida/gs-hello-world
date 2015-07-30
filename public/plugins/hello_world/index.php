@@ -11,15 +11,15 @@
 // installation's language is set to that file. So if the installation is in
 // English, the en_US.php file of your plugin will be merged with the core
 // i18n array, and the hashes will be available via i18n('hello_world/HASHNAME')
-// To facillitate this merge, the below code will merge the current language
-// if that langauge file exists, and en_US if there is no current language file
+// To facillitate this merge, the below code will merge the current language file
+// if that language file exists, and en_US if there is no current language file
 // for the plugin (remembering that we have the plugin $id imported from the
-// immediately invoked function:
+// immediately invoked function):
 i18n_merge($id) || i18n_merge($id, 'en_US');
 
 // To avoid having to call i18n('hello_world/HASHNAME') every time, we will
 // create a local i18n wrapper method that allows us to call $i18n('HASHNAME')
-// instead
+// instead:
 $i18n = function ($hash) use ($id) {
   // This uses the 'return' version of the i18n method
   return i18n_r($id . '/' .$hash);
@@ -59,7 +59,10 @@ $actions['admin'] = function() use ($i18n) {
 
 // register_plugin sets the general information about your plugin, and the admin
 // panel function that will run when the admin panel is accessed
-// This example will use call_user_func_array just to make the arguments clearer:
+// Most of this information will be shown on the 'Plugins' tab, where the admin
+// will enable/disable the plugin.
+// This example will use call_user_func_array on register_plugin just to make
+// its arguments clearer:
 call_user_func_array('register_plugin', array(
   'pluginid'    => $id,
   'title'       => $i18n('PLUGIN_TITLE'),
