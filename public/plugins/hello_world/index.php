@@ -22,7 +22,7 @@ i18n_merge($id) || i18n_merge($id, 'en_US');
 // instead:
 $i18n = function ($hash) use ($id) {
   // This uses the 'return' version of the i18n method
-  return i18n_r($id . '/' .$hash);
+  return i18n_r($id . '/' . $hash);
 };
 
 // == PLUGIN FUNCTIONALITY ==

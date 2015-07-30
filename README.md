@@ -21,5 +21,34 @@ installation.
 * Log into your GetSimple administration panel, go to the `Plugins` tab and
 enable the `Hello World` plugin
 
-# Developing your own plugin
-...
+# Using the Development Environment
+## Installation
+1. Install [VirtualBox](https://www.virtualbox.org/)
+2. Install [Vagrant](https://www.vagrantup.com/)
+3. Install [Vagrant Host Manager](https://github.com/smdahlen/vagrant-hostmanager)
+by running:
+
+    ```
+    $ vagrant plugin install vagrant-hostmanager
+    ```
+
+4. Clone this repository to any desired folder:
+
+    ```
+    $ git clone https://github.com/lokothodida/gs-hello-world
+    ```
+
+5. Go into the directory and checkout the `php-5.3` branch:
+
+    ```
+    $ cd gs-hello-world
+    $ git checkout php-5.3
+    ```
+
+## Usage
+
+1. In the cloned folder, run `vagrant up`
+2. Go to `get-simple.dev/` in your browser to see the development site. Log into
+the admin panel at `get-simple.dev/admin/` with username `admin` and password `demo123`
+3. Test out the plugin(s).
+4. To turn off the VM, run `vagrant halt`. To destroy the VM, run `vagrant destroy`.
