@@ -13,7 +13,8 @@
 // i18n array, and the hashes will be available via i18n('hello_world/HASHNAME')
 // To facillitate this merge, the below code will merge the current language
 // if that langauge file exists, and en_US if there is no current language file
-// for the plugin
+// for the plugin (remembering that we have the plugin $id imported from the
+// immediately invoked function:
 i18n_merge($id) || i18n_merge($id, 'en_US');
 
 // To avoid having to call i18n('hello_world/HASHNAME') every time, we will
@@ -49,7 +50,7 @@ $actions['admin'] = function() use ($i18n) {
   echo '<h3>' . $i18n('PLUGIN_TITLE') . '</h3>';
 
   // Content
-  echo $i18n('HELLO_WORLD_ADMIN');
+  echo '<p>' . $i18n('HELLO_WORLD_ADMIN') . '</p>';
 };
 
 // == PLUGIN REGISTRATION ==
@@ -58,16 +59,17 @@ $actions['admin'] = function() use ($i18n) {
 
 // register_plugin sets the general information about your plugin, and the admin
 // panel function that will run when the admin panel is accessed
-register_plugin(
-  $id,
-  $i18n('PLUGIN_TITLE'),
-  '1.0',
-  'You',
-  'http://yoursite.com',
-  $i18n('PLUGIN_DESC'),
-  'theme',
-  $actions['admin']
-);
+// This example will use call_user_func_array just to make the arguments clearer:
+call_user_func_array('register_plugin', array(
+  'id'          => $id,
+  'title'       => $i18n('PLUGIN_TITLE'),
+  'version'     => '1.0',
+  'author'      => 'You',
+  'website'     => 'http://yoursite.com',
+  'description' => $i18n('PLUGIN_DESCRIPTION'),
+  'tab'         => 'theme',
+  'admin'       => $actions['admin']
+));
 
 // This allows the admin panel to be active, but there isn't yet a sidebar link
 // to provide us access to it. So register an action that sets the sidebar link.
