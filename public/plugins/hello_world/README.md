@@ -1,27 +1,16 @@
-# Folder Structure
-## /
-Nothing in particular needs to go here except the `register.php` file and stray
-PHP files that don't seemto fit elsewhere.
+# Hello World Example Plugin
+This is an example plugin that illustrates the following:
 
-## /css
-CSS Stylesheets
+* Registering a plugin
+* Registering plugin hooks/actions
+* Making your plugin language-internationalizable with the GetSimple core
 
-## /js
-External Javascript `.js` files
+The `../hello_world.php` file creates a [closure](http://php.net/manual/en/functions.anonymous.php) to protect the plugin's variable
+declarations, and `includes` the `index.php` file.
 
-## /img
-Images
+`index.php` declares variables and helper methods, and then registers the plugin
+and its actions.
 
-# /lang
-Plugin language files
+`/lang/` contains the language files for the plugin.
 
-# /backend
-PHP files relating to the administration panel
-
-# /frontend
-PHP files relating to the front-end user
-
-# /lib
-PHP classes, traits and interfaces
-In particular, the main `GSPlugin` class (which is used for registering and
-handling the plugin) is kept here. `GSPlugin` is part of the [Plugin SDK]().
+Check out the fully documented source code for [`index.php`](index.php).
