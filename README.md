@@ -23,6 +23,15 @@ installation.
 enable the `Hello World` plugin.
 
 # Using the Development Environment
+You can use this repository as a development environment to test this plugin and
+any that you develop. It comes with:
+
+* PHP 5.5+
+* GetSimple 3.3.6 (`username: admin`, `password: demo123`)
+
+You will not need to set up a development server on your native machine (e.g.
+a LAMP/WAMP stack) if you use this environment.
+
 ## Installation
 1. Install [VirtualBox](https://www.virtualbox.org/)
 2. Install [Vagrant](https://www.vagrantup.com/)
@@ -53,3 +62,24 @@ by running:
 the admin panel at `get-simple.dev/admin/` with username `admin` and password `demo123`
 3. Test out the plugin(s).
 4. To turn off the VM, run `vagrant halt`. To destroy the VM, run `vagrant destroy`.
+
+## Troubleshooting
+
+### Ubuntu/Debian
+* If your terminal gives you this message:
+    ```
+    It appears your machine doesn't support NFS, or there is not an
+    adapter to enable NFS on this machine for Vagrant. Please verify
+    that `nfsd` is installed on your machine, and try again. If you're
+    on Windows, NFS isn't supported. If the problem persists, please
+    contact Vagrant support.
+    ```
+    Then make sure that you have the `nsf-common` installed:
+
+    ```
+    sudo apt-get install nfs-common
+    ```
+
+## Thanks
+* [GetSimpleCMS](https://github.com/GetSimpleCMS/) for the great CMS
+* [scotch-io](https://github.com/scotch-io/) for the [Scotch Box](https://github.com/scotch-io/scotch-box) Vagrant setup
