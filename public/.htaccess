@@ -53,7 +53,7 @@ DirectoryIndex index.php
 
 	# Usually RewriteBase is just '/', but 
 	# replace it with your subdirectory path
-	RewriteBase **REPLACE**
+	RewriteBase /
 
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
