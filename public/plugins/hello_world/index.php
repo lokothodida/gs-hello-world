@@ -33,7 +33,7 @@ $i18n = function ($hash) use ($id) {
 // that will be invoked at the desired times.
 // 'Hooks' are callbacks: functions that are executed are particular points in
 // time during the time that GetSimple is running on the server
-// For variable cleanliness, let us keep the actions on an array:
+// For variable cleanliness, let us keep the actions on a single array:
 $actions = array();
 
 // Lets define the callback that will be called in the theme's footer:
@@ -61,21 +61,27 @@ $actions['admin'] = function() use ($i18n) {
 // panel function that will run when the admin panel is accessed
 // This example will use call_user_func_array just to make the arguments clearer:
 call_user_func_array('register_plugin', array(
-  'id'          => $id,
+  'pluginid'    => $id,
   'title'       => $i18n('PLUGIN_TITLE'),
   'version'     => '1.0',
   'author'      => 'You',
   'website'     => 'http://yoursite.com',
   'description' => $i18n('PLUGIN_DESCRIPTION'),
-  'tab'         => 'theme',
-  'admin'       => $actions['admin']
+  'admintab'    => 'theme',
+  'adminpanel'  => $actions['admin']
 ));
 
 // This allows the admin panel to be active, but there isn't yet a sidebar link
 // to provide us access to it. So register an action that sets the sidebar link.
 // The parameters passed to the hook/action are the id of the plugin and the
-// sidebar label:
-add_action('theme-sidebar', 'createSideMenu', array($id, $i18n('PLUGIN_SIDEBAR')));
+// sidebar label. The key => value mapping shown isn't necessary (as add_action
+// uses call_user_func_array), but again it helps to make the arguments clearer)
+add_action('theme-sidebar', 'createSideMenu', array(
+  'pluginid' => $id,
+  'label'    => $i18n('PLUGIN_SIDEBAR')
+));
 
-// Finally, register the theme-footer hook:
+// Finally, register the theme-footer hook (no extra arguments to pass here)
 add_action('theme-footer', $actions['theme-footer']);
+
+// And with that, our Hello World plugin is registered and functional!
