@@ -1,11 +1,11 @@
 <?php
 
-// Load the settings functions
-$export = require 'settings_functions.php';
+// Load the settings functions and import the variables into the closure
+$import = require 'settings_functions.php';
 
 // Import variables into the closure
-$methods = $export(array(
-  'i18n' => $i18n,
+$methods = $import(array(
+  'i18n'     => $i18n,
   'datapath' => GSDATAOTHERPATH,
 ));
 
