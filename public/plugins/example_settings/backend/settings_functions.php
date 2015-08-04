@@ -1,13 +1,13 @@
 <?php
 
 // Closure to protect variables related to these common functions
-return function($params = array()) {
+return function($imports = array()) {
 
 // Import the i18n helper method
-$i18n = $params['i18n'];
+$i18n = $imports['i18n'];
 
 // File we will save the data to
-$file = $params['datapath']. '/mysettings.json';
+$file = $imports['datapath']. '/mysettings.json';
 
 // Default data for the file
 $default = array(
