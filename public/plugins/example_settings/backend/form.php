@@ -34,31 +34,25 @@
 
   <!--html editor-->
   <textarea name="html" class="htmleditor"><?php echo $data['html']; ?></textarea>
-  <script src="//cdn.ckeditor.com/4.5.2/standard/ckeditor.js"></script>
+  <script src="template/js/ckeditor/ckeditor.js"></script>
   <script>
     $(function () {
       var htmleditor = $('.htmleditor')[0];
-      CKEDITOR.replace(htmleditor);
+      CKEDITOR.replace(htmleditor, <?php echo json_encode($htmlconfig); ?>);
     });
   </script>
 
   <!--code editor-->
-  <textarea name="code" style="display: none;"><?php echo $data['code']; ?></textarea>
-  <div class="codeeditor" style="height: 500px; width: 100%; border: 1px solid #ccc; margin: 10px 0 10px 0;"></div>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" type="text/javascript" charset="utf-8"></script>
+  <textarea name="code" class="codeeditor"><?php echo $data['code']; ?></textarea>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.5.0/codemirror.css">
+  <style>
+    .CodeMirror { border: 1px solid #ccc; margin: 10px 0; }
+  </style>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.5.0/codemirror.js"></script>
   <script>
     $(function() {
-      var editor = ace.edit($('.codeeditor')[0]);
-      var textarea = $('textarea[name="code"]');
-      var session = editor.getSession();
-
-      editor.setTheme("ace/theme/chrome");
-      session.setMode("ace/mode/php");
-      session.setValue(textarea.val());
-
-      $(document).submit(function() {
-        textarea.val(session.getValue());
-      });
+      var codeeditor = $('.codeeditor')[0];
+      CodeMirror.fromTextArea(codeeditor, <?php echo json_encode($codeconfig); ?>);
     });
   </script>
 
