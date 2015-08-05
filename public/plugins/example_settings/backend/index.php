@@ -12,11 +12,15 @@ $import = include 'settings_functions.php';
 $methods = $import(array(
   'i18n'     => $i18n,           // Helper method is used for displaying messages
   'datapath' => GSDATAOTHERPATH, // Used for the canonical path of the settings file
+  'pluginurl' => $GLOBALS['SITEURL'] . '/plugins/' . $id,
 ));
 
 // For the sake of ease, we can bring the methods into the current symbol table
 // So that $init === $methods['init']
 extract($methods);
+
+// Display the header for the admin panel:
+echo '<h3>' . $i18n('PLUGIN_TITLE') . '</h3>';
 
 // Now we will try to:
 //   1. Initialize the settings file
