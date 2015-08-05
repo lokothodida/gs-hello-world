@@ -12,6 +12,7 @@ return function($imports = array()) {
 
 // Import the i18n helper method (we will use this for displaying messages)
 $i18n = $imports['i18n'];
+$pluginurl = $imports['pluginurl'];
 
 // Set the filename for the file we will save the data to
 // Note that we are using the json file format, because PHP has native methods
@@ -20,20 +21,28 @@ $file = $imports['datapath']. '/mysettings.json';
 
 // Set some default data for the file
 $default = array(
-  'setting1' => 'value1',
+  'title' => 'Example Title',
+  'text1' => 'Example text 1',
+  'text2' => 'Example text 2',
+  'code' => '<?php phpinfo(); ?>',
+  'html' => '<p>Some <b>example</b> <i>html</i></p>',
 );
 
 // Now we define our array of methods:
 $settings = array();
 
 // This method gets the current settings data
-$settings['get'] = function() use ($file, $i18n) {
+$settings['get'] = function() use ($file, $i18n, $default) {
   // Get the contents from the file (suppressing the error here)
   $contents = @file_get_contents($file);
 
   if ($contents !== false) {
     // If we were successful, return the data as an array
-    return (array) json_decode($contents);
+    // Just in case the array doesn't have all of the data that we want, add
+    // in the default properties
+    $data = (array) json_decode($contents);
+    $data = array_merge($default, $data);
+    return $data;
   } else {
     // Otherwise throw an exception
     // We do this because if a script is about to execute that depends on the
@@ -71,7 +80,7 @@ $settings['init'] = function() use ($file, $settings, $default) {
 };
 
 // Displaying a form given some settings $data
-$settings['displayform'] = function($data) use ($i18n) {
+$settings['displayform'] = function($data) use ($i18n, $pluginurl) {
   include 'form.php';
 };
 
