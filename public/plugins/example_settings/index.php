@@ -20,7 +20,7 @@ call_user_func_array('register_plugin', array(
   'website'     => 'http://yoursite.com',
   'description' => $i18n('PLUGIN_DESCRIPTION'),
   'admintab'    => 'settings',
-  'adminpanel'  => function() use ($i18n) {
+  'adminpanel'  => function() use ($id, $i18n) {
     // All admin panel logic will be contained in the backend/index.php file
     include 'backend/index.php';
   }
