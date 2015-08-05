@@ -10,8 +10,8 @@ $import = include 'settings_functions.php';
 // In the invokation, we will pass in some parameters from the current scope
 // so that the imported methods can use them
 $methods = $import(array(
-  'i18n'     => $i18n,
-  'datapath' => GSDATAOTHERPATH,
+  'i18n'     => $i18n,           // Helper method is used for displaying messages
+  'datapath' => GSDATAOTHERPATH, // Used for the canonical path of the settings file
 ));
 
 // For the sake of ease, we can bring the methods into the current symbol table
