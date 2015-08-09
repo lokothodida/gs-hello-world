@@ -1,10 +1,6 @@
 # Temp files
 *~
 
-# Vagrant files
-.vagrant/
-
-# GetSimple Cache
-public/data/cache/
-public/data/other/logs/
-public/backups/
+# GetSimple Default Plugins
+anonymous_data~
+InnovationPlugin~
