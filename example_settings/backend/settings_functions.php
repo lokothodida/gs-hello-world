@@ -81,17 +81,6 @@ $settings['init'] = function() use ($file, $settings, $default) {
 
 // Displaying a form given some settings $data
 $settings['displayform'] = function($data) use ($i18n, $pluginurl) {
-  // Configuration for html editor
-  $htmlconfig = array(
-    'toolbar' => 'basic',
-    'skin' => 'getsimple',
-  );
-
-  // Configuration for code editor
-  $codeconfig = array(
-    'lineNumbers' => true,
-  );
-
   // The form
   include 'form.php';
 };

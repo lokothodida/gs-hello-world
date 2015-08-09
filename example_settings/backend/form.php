@@ -8,6 +8,19 @@
 // Also, no action parameter has been set, meaning that the query will be sent
 // to the same page (this page)
 
+// Configurations for editors (these will be cast to Javascript objects)
+// Configuration for html editor
+$htmlconfig = array(
+  'toolbar'  => 'basic',
+  'skin'     => 'getsimple',
+  'language' => 'en',
+);
+
+// Configuration for code editor
+$codeconfig = array(
+  'lineNumbers' => true,
+);
+
 ?>
 
 <form method="post">
